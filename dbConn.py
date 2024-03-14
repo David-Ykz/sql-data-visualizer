@@ -9,9 +9,12 @@ def queryDatabase(query):
         cursor.execute(query)
         rows = cursor.fetchall()
         for row in rows:
-            print(row)
-
+            pass
+#            print(row)
         cursor.close()
         conn.close()
+
+        return rows
     except Exception as e:
         print("Error:", e)
+        return ""
