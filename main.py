@@ -7,6 +7,8 @@ import os
 
 from dbConn import queryDatabase
 
+import re
+
 load_dotenv()
 OPENAI_KEY = os.getenv("OPENAI_KEY")
 
@@ -24,7 +26,7 @@ systemContext = """ Given the following SQL tables, write queries based on the u
                     );
                 """
 #inputPrompt = input(">>> ")
-inputPrompt = "can i get a histogram of the benchmarks"
+inputPrompt = "can i get a distribution of prices"
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", systemContext),
@@ -69,6 +71,14 @@ palPrompt = (
 )
 palChain = prompt | llm | outputParser
 generatedCode = palChain.invoke({"input": palPrompt})
+
+if "sqlQueryData" not in generatedCode:
+    regex = r'def\s+(\w+)\s*\(.*\):'
+    functionNames = re.findall(regex, generatedCode)
+    functionName = "print"
+    if len(functionNames) > 0:
+        functionName = functionNames[0]
+    generatedCode += "\n\n" + functionName + "(sqlQueryData)"
 
 print(generatedCode)
 exec(generatedCode)
