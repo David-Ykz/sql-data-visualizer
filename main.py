@@ -17,6 +17,8 @@ outputParser = StrOutputParser()
 
 systemContext = """ Given the following SQL tables, write queries based on the user's request.
                     Return only the query (ex. SELECT DISTINCT "HouseType" FROM HousingPrices;).
+                    The query should be focused on returning raw data without modifying it.
+                    For example, if the user asked for a histogram, you should return all the rows instead of using frequency, and let the rest of the program deal with the data.  
                     CREATE TABLE HousingPrices (
                         "HouseType" VARCHAR(255),
                         "Area" VARCHAR(255),
@@ -24,9 +26,18 @@ systemContext = """ Given the following SQL tables, write queries based on the u
                         "Benchmark" VARCHAR(255),
                         "Yr./Yr. % Chg." DECIMAL(5, 2)
                     );
+                    
+                    CREATE TABLE WeatherData (
+                        "Month" INT,
+                        "Region" VARCHAR(255),
+                        "HighTemperature" INT,
+                        "LowTemperature" INT,
+                        "RainfallMM" DECIMAL,
+                        "DaylightHours" DECIMAL
+                    );
                 """
 #inputPrompt = input(">>> ")
-inputPrompt = "can i get a distribution of prices"
+inputPrompt = "can i get a scatter plot of the low and high temperatures over time (months) in toronto and vancouver"
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", systemContext),
