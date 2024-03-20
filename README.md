@@ -28,11 +28,17 @@ Conversion notes:
 
 Examples:
 
+```
 “can i get a scatter plot of the low and high temperatures over time (months) in toronto and vancouver”
+```
 ![image](https://github.com/David-Ykz/custom-llm/assets/59211419/fd9c3538-b774-4e93-9f67-30987853adbd)
 
+```
 “can i get a line graph of the daylight hours for each of the different regions per month”
+```
 ![image](https://github.com/David-Ykz/custom-llm/assets/59211419/62c427b3-55f7-4d65-8898-56e12d145f51)
 
+```
 “can i get a correlation between the hours of daylight and the amount of rainfall”
+```
 ![image](https://github.com/David-Ykz/custom-llm/assets/59211419/4e1debe7-b886-4eb1-b1b6-fdb210736538)
