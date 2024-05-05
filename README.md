@@ -24,7 +24,11 @@ Conversion notes:
 
 ----->
 
-Examples:
+This project allows non-technical users to query a database using plain-text and get a visual representation of the data. For example, business analysts may want to compare the revenue and operating costs of various services. Despite not knowing the database structure, they can simply enter a query (ex. "Give me a bar graph comparison for the revenue and operating costs of our services") and get a bar graph with all the necessary details. 
+
+This is accomplished by using Langchain to seamlessly integrate database queries, LLM models, and API calls. Furthermore, it uses Program-Aided Language Models - an approach that encourages LLMs to solve problems through generating code. This approach has a higher accuracy compared to conventional approaches for prompts that involve reasoning. 
+
+The following are examples of the visuals that can be generated from plain-text queries. These examples come from a PostgreSQL database containing weather data for Canadian provinces and territories. 
 
 ```
 “can i get a scatter plot of the low and high temperatures over time (months) in toronto and vancouver”
